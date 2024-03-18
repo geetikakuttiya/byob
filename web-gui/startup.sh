@@ -23,7 +23,7 @@ else
 	
 	# Installs Pip even if a Python installation is found because some users don't install pip
 	
-	sudo apt install python3-pip
+	apt-get install python3-pip
 
 fi
 
@@ -35,10 +35,10 @@ if test $status -ne 0
 then
 	echo "Installing Docker..."
 	chmod +x get-docker.sh
-	sudo bash ./get-docker.sh
-	sudo usermod -aG docker $USER
-	sudo chmod 666 /var/run/docker.sock
-    sudo docker run hello-world
+	bash ./get-docker.sh
+	usermod -aG docker $USER
+	chmod 666 /var/run/docker.sock
+    docker run hello-world
 	
 else
 	echo "Confirmed Docker is installed."
