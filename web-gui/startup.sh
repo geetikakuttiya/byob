@@ -23,7 +23,7 @@ else
 	
 	# Installs Pip even if a Python installation is found because some users don't install pip
 	
-	apt install python3-pip
+	sudo apt install python3-pip
 
 fi
 
@@ -35,10 +35,10 @@ if test $status -ne 0
 then
 	echo "Installing Docker..."
 	chmod +x get-docker.sh
-	bash ./get-docker.sh
-	usermod -aG docker $USER
-	chmod 666 /var/run/docker.sock
-    docker run hello-world
+	sudo bash ./get-docker.sh
+	sudo usermod -aG docker $USER
+	sudo chmod 666 /var/run/docker.sock
+    sudo docker run hello-world
 	
 else
 	echo "Confirmed Docker is installed."
@@ -53,10 +53,10 @@ python3 -m pip install -r requirements.txt
 # Build Docker images
 echo "Building Docker images - this will take a while, please be patient..."
 cd docker-pyinstaller
-docker build -f Dockerfile-py3-amd64 -t nix-amd64 .
-docker build -f Dockerfile-py3-i386 -t nix-i386 .
-docker build -f Dockerfile-py3-win32 -t win-x32 .
-docker build -f Dockerfile-py3-win64 -t win-x64 .
+sudo docker build -f Dockerfile-py3-amd64 -t nix-amd64 .
+sudo docker build -f Dockerfile-py3-i386 -t nix-i386 .
+sudo docker build -f Dockerfile-py3-win32 -t win-x32 .
+sudo docker build -f Dockerfile-py3-win64 -t win-x64 .
 
 read -p "To use some Byob features, you must reboot your system. If this is not your first time running this script, please answer no. Reboot now? [Y/n]: " agreeTo
 #Reboots system if user answers Yes
@@ -64,7 +64,7 @@ case $agreeTo in
     y|Y|yes|Yes|YES)
     echo "Rebooting..."
     sleep 1
-    reboot now
+    sudo reboot now
     exit
     ;;
 #Runs app if user answers No
