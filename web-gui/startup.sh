@@ -33,7 +33,7 @@ status=$?
 
 if test $status -ne 0
 then
-	curl -fsSL https://get.docker.com/ | sudo sh
+	curl -sSL https://get.docker.com/ | sudo sh
 	
 else
 	echo "Confirmed Docker is installed."
