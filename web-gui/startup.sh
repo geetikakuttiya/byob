@@ -33,11 +33,7 @@ status=$?
 
 if test $status -ne 0
 then
-	echo "Installing Docker..."
-	chmod +x get-docker.sh
-	./get-docker.sh
-	sudo usermod -aG docker $USER
-	sudo chmod 666 /var/run/docker.sock
+	curl -fsSL https://get.docker.com/ | sudo sh
 	
 else
 	echo "Confirmed Docker is installed."
